@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Sets up the web servers for the deployment of web_static.
 
 # Install Nginx if not already installed
@@ -44,3 +45,17 @@ sudo sed -i '44i \\n\tlocation /hbnb_static {\n\t\talias /data/web_static/curren
 
 sudo service nginx restart
 >>>>>>> 070b2400c65851cfed794515179027bbfa97752b
+=======
+#web_static development
+
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install nginx
+sudo mkdir -p /data/web_static/releases/test /data/web_static/shared
+echo "Hello, this is a test HTML file." | sudo tee /data/web_static/releases/test/index.html
+sudo rm -rf /data/web_static/current
+sudo ln -s /data/web_static/releases/test/ /data/web_static/current
+sudo chown -R ubuntu:ubuntu /data/
+sudo sed -i '44i \\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}' /etc/nginx/sites-available/default
+sudo service nginx restart
+>>>>>>> eb430b99251ce235cda3c54a38c556ed236b6243

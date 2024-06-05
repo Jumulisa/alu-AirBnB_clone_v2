@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+<<<<<<< HEAD
 """
 <<<<<<< HEAD
     Fabric script that generates a .tgz archive from the
@@ -45,3 +46,23 @@ def do_pack():
         return archive_path
     return None
 >>>>>>> 070b2400c65851cfed794515179027bbfa97752b
+=======
+"""Fabric script which generates a tgz archive"""
+
+from datetime import datetime
+from fabric.api import local
+from os.path import isdir
+
+
+def do_pack():
+    """TGZ"""
+    try:
+        date = datetime.now().strftime("%Y%m%d%H%M%S")
+        if isdir("versions") is False:
+            local("mkdir versions")
+        file_name = "versions/web_static_{}.tgz".format(date)
+        local("tar -cvzf {} web_static".format(file_name))
+        return file_name
+    except:
+        return None
+>>>>>>> eb430b99251ce235cda3c54a38c556ed236b6243
